@@ -1,15 +1,6 @@
 import sender_stand_request
 import data
 
-#получение данных о созданном пользователе и параметре authToken
-def get_new_user_token():
-    # Создать нового пользователя
-    user_body = data.user_body
-    # получить ответ по созданному пользователю
-    response_user = sender_stand_request.post_new_user(user_body)
-    # Запомнить токен авторизации
-    return response_user.json()["authToken"]
-
 
 # функция меняет значение в параметре name из тела kit_body вкладка data
 def get_kit_body(name):
@@ -44,9 +35,6 @@ def negative_assert(kit_body):
     # Проверка, что в теле ответа "code" равен 400
     assert kit_response.json()["code"] == 400
 
-def negative_assert_code_400(kit_body):
-    resp = sender_stand_request.post_new_client_kit(kit_body, get_new_user_token())
-    assert resp.status_code == 400
 
 # Тест 1. Допустимое количество символов (1)
 
